@@ -69,32 +69,38 @@ void solve() {
    // projecteuler problem 15 : Lattice Paths
    // tried brute force dfs at first !!!
 
+   // the answer for a grid of size n * m,
+   // would be a[n + 1][m + 1]
+
+   // the 2d-grid is 1-indexed
+   // a[0][0] represents point [0, 0] starting from top left
+
    ll t = 1;
    cin >> t;
 
    r = t, c = t;
 
    a.resize(r + 2);
-   for (int i = 0; i <= r + 1; i++) {
+   for (int i = 0; i < r + 2; i++) {
       a[i].resize(c + 2);
    }
 
    a[1][1] = 1;
 
-   for (int i = 1; i <= r + 1; i++) {
-      for (int j = 1; j <= c + 1; j++) {
+   for (int i = 1; i < r + 2; i++) {
+      for (int j = 1; j < c + 2; j++) {
          a[i][j] += a[i - 1][j] + a[i][j - 1];
       }
    }
 
-   for (int i = 1; i < 21; i++) {
-      for (int j = 1; j < 21; j++) {
+   for (int i = 1; i < r + 2; i++) {
+      for (int j = 1; j < c + 2; j++) {
          cout << a[i][j] << " ";
       }
      newline;
    }
 
-   ans = a[21][21];
+   ans = a[r + 1][c + 1];
    cout << ans << nl;
    
 }
@@ -104,7 +110,7 @@ int main() {
    cin.tie(0);
 
    int TESTCASES = 1;
-   cin >> TESTCASES;
+   // cin >> TESTCASES;
 
    while (TESTCASES--) {
       solve();
